@@ -1,0 +1,13 @@
+*.pyc
+test_save.pipe
+*.vscode/
+__pycache__/
+.pytest_cache
+.hypothesis
+.coverage
+.coverage*
+.ipynb_checkpoints/
+docs/_build/
+spotlob.egg-info/
+dist/
+.tox/

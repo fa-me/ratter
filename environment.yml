@@ -1,0 +1,6 @@
+name: ratter
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - sympy
