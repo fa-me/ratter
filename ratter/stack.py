@@ -1,5 +1,6 @@
 import sympy as sp
 from .symbols import LAMBDA_VAC
+from functools import reduce
 
 
 def fresnel_r(n1, n2):
@@ -32,7 +33,9 @@ class Layerstack(object):
 
         def tm(i):
             return self._M_list(i).subs(subs)
-        return reduce(lambda a, b: a*b, [tm(i) for i in range(0, self._layercount()-1)])
+        transfer_matrices = [tm(i) for i in range(0, self._layercount()-1)]
+
+        return reduce(lambda a, b: a*b, transfer_matrices)
 
     @property
     def substitutions(self):
