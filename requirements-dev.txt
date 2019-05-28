@@ -1,6 +1,7 @@
 sympy
 pylint
 pytest
+tox
 pep8
 autopep8
 tmm
