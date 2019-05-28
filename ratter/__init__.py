@@ -1,5 +1,5 @@
 __name__ = "ratter"
-__version__ = '0.1.0 dev'
+__version__ = '0.1.0.dev'
 __author__ = "Fabian Meyer"
 __maintainer__ = "Fabian Meyer"
 __email__ = "fabian.meyer@mailbox.org"

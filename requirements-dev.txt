@@ -1,0 +1,6 @@
+sympy
+pylint
+pytest
+pep8
+autopep8
+tmm
