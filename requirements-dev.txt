@@ -1,4 +1,5 @@
 sympy
+scipy
 numpy
 pylint
 pytest
