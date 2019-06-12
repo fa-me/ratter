@@ -1,6 +1,7 @@
 import unittest
 from ratter.material import Material
-from ratter.stack import Layer, Layerstack
+from ratter.stack import Layerstack
+from ratter.layer import Layer
 
 
 class LayerstackTests(unittest.TestCase):
