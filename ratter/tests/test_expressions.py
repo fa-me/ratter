@@ -6,7 +6,8 @@ from numpy.testing import assert_array_equal, \
 from tmm import coh_tmm
 
 from ratter.expressions import as_function_of
-from ratter.stack import Layerstack, Layer
+from ratter.stack import Layerstack
+from ratter.layer import Layer
 from ratter.material import Material
 from ratter.symbols import LAMBDA_VAC
 

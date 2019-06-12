@@ -7,3 +7,4 @@ class BasicTest(unittest.TestCase):
         import ratter.stack
         import ratter.symbols
         import ratter.material
+        import ratter.layer
