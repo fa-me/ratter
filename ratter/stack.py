@@ -29,6 +29,13 @@ class Layerstack(object):
                                  [self.r[n, n+1], 1]]))*1 / self.t[n, n+1]
 
     def transfer_matrix(self):
+        """Calculates the transfer-matrix for this stack
+
+        Returns
+        -------
+        expression
+            the transfer matrix of the stack, possibly with free symbols
+        """
         subs = self.substitutions
 
         def tm(i):
@@ -70,10 +77,28 @@ class Layerstack(object):
         return subst
 
     def reflectance_amplitude(self):
+        """(complex) amplitude of the reflectance of this stack.
+        The total reflectance is calculated as the absolute value of this
+        amplitude
+
+        Returns
+        -------
+        expression
+            Amplitude of reflectance
+        """
         transm = self.transfer_matrix()
         return transm[1, 0] / transm[0, 0]
 
     def transmittance_amplitude(self):
+        """(complex) amplitude of the transmittance of this stack.
+        The total transmittance is calculated as the absolute value of this
+        amplitude
+
+        Returns
+        -------
+        expression
+            Amplitude of transmittance
+        """
         transm = self.transfer_matrix()
         return 1 / transm[0, 0]
 
