@@ -9,3 +9,4 @@ docs/_build/
 ratter.egg-info/
 dist/
 .tox/
+notebooks/.ipynb_checkpoints/

@@ -3,6 +3,7 @@ scipy
 numpy
 pylint
 pytest
+pytest-coverage
 tox
 pep8
 autopep8
