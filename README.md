@@ -24,7 +24,7 @@ For a detailed description, I recommend the publication of Steven J. Byrnes: [ar
 ## Limitations
 
 * As of now, *ratter* does not support an angle of incidence other than 0, meaning perfectly normal incidence. Hence it does not consider polarization at all.
-* It does not support incoherent light and thus gives unrealistic results for thick layers (Thick meaning much thicker than the wavlength)
+* It does not support incoherent light and thus gives unrealistic results for thick layers which do not maintain coherence.
 * The calculation of spatially resolved absorption is also not included.
 
 All of these above can and hopefully will be implemented in future versions.
@@ -37,4 +37,4 @@ If it is required to numerically calculate the reflectance, absorption or transm
 * [OpenTMM](https://pypi.org/project/openTMM/)
 * [PyTMM](https://github.com/kitchenknif/PyTMM)
 
-We try to test *ratter* to give the same results as [tmm](https://pypi.org/project/tmm/).
+*ratter* is tested to give the same results as [tmm](https://pypi.org/project/tmm/).
