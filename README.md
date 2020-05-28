@@ -27,12 +27,12 @@ stack = Layerstack([l1,l2,l3])
 
 r = stack.reflectance_amplitude().simplify()
 ```
-<img src="/docs/three_materials_r.png" width="200"/>
+<img src="/docs/three_materials_r.png" width="320"/>
 
 ```
 stack.transmittance_amplitude().simplify()
 ```
-<img src="/docs/three_materials_t.png" width="200"/>
+<img src="/docs/three_materials_t.png" width="320"/>
 
 
 ## Example 2: numeric calculation of multilayer coating
@@ -81,7 +81,7 @@ plt.legend(title='$Al_2O_3$ thickness (nm)')
 plt.ylabel('reflectivity')
 plt.xlabel('$SiO_2$ thickness (nm)')
 ```
-<img src="/docs/example_plot.png" width="200"/>
+<img src="/docs/example_plot.png" width="320"/>
 
 
 ## Installation
