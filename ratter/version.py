@@ -6,5 +6,4 @@ __email__ = "fabian.meyer@ise.fraunhofer.de"
 __copyright__ = "Copyright 2020, Fraunhofer ISE"
 __license__ = "BSD 3-clause"
 __url__ = "https://github.com/fa-me/ratter"
-__summary__ = """calculate coherent reflection, absorption
-and transmission of thin layer stacks"""
+__summary__ = """calculate coherent reflection, absorption and transmission of thin layer stacks"""
