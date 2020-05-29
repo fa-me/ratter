@@ -1,5 +1,26 @@
+cache:
+  paths:
+    - .pip
+
 stages:
+  - package
   - test
+  - deploy
+  
+package:
+  image: python:3.7
+  stage: package
+  tags:
+    - asprunner
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+    - dist/
+    expire_in: 1 week
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+  script:
+    - python setup.py sdist
 
 test:
   image: python:3.7
@@ -9,3 +30,18 @@ test:
   script:
     - pip install pytest tox
     - tox
+
+deploy pypi:
+  image: python:3.7
+  stage: deploy
+  tags:
+    - asprunner
+  script:
+      - pip install -U twine
+      - python setup.py sdist
+      - twine upload dist/*
+  only:
+      - tags
+  except:
+      - branches
+

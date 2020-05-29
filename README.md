@@ -1,13 +1,15 @@
 # ratter
 
-*ratter* is a python tool to calculate the optical properties -- most importantly *R*eflection and *T*ransmission -- of a stack of layers of different materials. For this is uses the fresnel formalae and transfer matrix calculations.
+*ratter* is a python tool to calculate the optical response -- most importantly *R*eflection and *T*ransmission -- of a stack of layers of different materials. For this is uses the fresnel formalae and transfer matrix calculations.
 
 It provides classes to define a stack of materials, while giving all, some or no numeric values. With *ratter* you can calculate the optical properties of this
 stack as numerical values or as functions - formulae or algorithms. With the power of [numpy](https://numpy.org) and [sympy](https://www.sympy.org), *ratter* gives numeric and symbolic calculations as a mixture and allows you to jump between the two freely.
 
 If you give all values that are necessary to calculate the reflectance of a stack, *ratter* will just calculate and return that value. If you leave numerical values unset and give a symbol instead, for example a *d* as the thickness of an interlayer, *ratter* will return the reflection as a sympy formula with free symbol *d*. This formula can then be turned into an algorithmic function with *d* as an argument. This function will be a numpy function and vectorized, such that it can be applied to an array of *d*'s. This enables fast numeric calculations of the dependencies of the optical properties of a stack from any free parameter.
 
-## Example 1: symbolic calculations
+## Example 1: general symbolic calculations
+
+In a stack of multiple layers, the two outer layers are considered infinite half-spaces.
 
 ```python
 from ratter import *
@@ -25,6 +27,7 @@ l3 = Layer('l3', m3)
 # define the order of the layers
 stack = Layerstack([l1,l2,l3])
 
+# calculate the (complex) reflectance amplitude
 r = stack.reflectance_amplitude().simplify()
 ```
 <img src="/docs/three_materials_r.png" width="320"/>
@@ -35,18 +38,20 @@ stack.transmittance_amplitude().simplify()
 <img src="/docs/three_materials_t.png" width="320"/>
 
 
-## Example 2: numeric calculation of multilayer coating
+## Example 2: numeric calculation of a double layer coating
 ```python
 from ratter import *
 from sympy import conjugate
 
 wavelength = 600 # length units: nm
 
+# define materials with their refractive index at the wavelength
 Si = Material('Si', refractive_index_value=3.9400+0.019934j)  # Green 2008
 air = Material('air', refractive_index_value=1.00027698) # Ciddor 1996
 SiO2 = Material('SiO2', refractive_index_value=1.4580) # Malitson 1965
 AlOx = Material('Al2O3', refractive_index_value=1.7675) # Malitson and Dodge 1972
 
+# define the layers
 environment = Layer('env', air)
 coating1 = Layer('coat1', SiO2)
 coating2 = Layer('coat2', AlOx)
@@ -55,7 +60,7 @@ bulk = Layer('bulk', Si)
 # define the order of materials
 stack = Layerstack([environment, coating1, coating2, bulk])
 
-# calculate absolute reflectivity
+# calculate absolute reflectivity R
 r = stack.reflectance_amplitude()
 R = conjugate(r)*r
 
@@ -96,11 +101,11 @@ To install use `pip`
 
 The theory behind the formulae used by *ratter* are the Fresnel Formulae. *ratter* assumes incoming light as a plane wave, described by its complex field amplitude and phase. The interaction with a material layer leads to a change in phase and amplitude (dependent on the refractive index of the material), which can be expressed as a transfer matrix. The consecutive propagation through the layers can be described as a consecutive application of the matrices. Thus a stack of layers can be described as one single transfer matrix. *ratter* calculates that matrix symbolically using [sympy](https://www.sympy.org).
 
-For a detailed description, I recommend the publication of Steven J. Byrnes: [arXiv:1603.02720 [physics.comp-ph]](https://arxiv.org/abs/1603.02720)
+For a detailed description, I recommend the explanations of Steven J. Byrnes: [arXiv:1603.02720 [physics.comp-ph]](https://arxiv.org/abs/1603.02720)
 
 ## Limitations
 
-* As of now, *ratter* does not support an angle of incidence other than 0, meaning perfectly normal incidence. Hence it does not consider polarization at all.
+* As of now, *ratter* does not support an angle of incidence other than 0, meaning perfectly normal incidence. It does not consider polarization at all.
 * It does not support incoherent light and thus gives unrealistic results for thick layers which do not maintain coherence.
 * The calculation of spatially resolved absorption is also not included.
 
